@@ -1,0 +1,22 @@
+name: CI
+
+# Private repo: macOS minutes count 10x against the free allowance, so CI runs
+# on pull requests, release tags and by hand, not on every push.
+on:
+  pull_request:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Package tests (macOS)
+        run: swift test
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild build -scheme SliceLibrary-Package \
+            -destination "generic/platform=iOS Simulator" CODE_SIGNING_ALLOWED=NO -quiet
