@@ -11,13 +11,16 @@ let package = Package(
         .library(name: "SliceKit", targets: ["SliceKit"]),
         .library(name: "SliceUI", targets: ["SliceUI"]),
         .library(name: "SliceQR", targets: ["SliceQR"]),
+        .library(name: "SliceRating", targets: ["SliceRating"]),
     ],
     targets: [
         .target(name: "SliceKit"),
         .target(name: "SliceUI"),
         .target(name: "SliceQR", exclude: ["README.md"]),
+        .target(name: "SliceRating", exclude: ["README.md"]),
         .testTarget(name: "SliceKitTests", dependencies: ["SliceKit"]),
         .testTarget(name: "SliceUITests", dependencies: ["SliceUI"]),
         .testTarget(name: "SliceQRTests", dependencies: ["SliceQR"]),
+        .testTarget(name: "SliceRatingTests", dependencies: ["SliceRating"]),
     ]
 )
