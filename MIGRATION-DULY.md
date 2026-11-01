@@ -7,8 +7,8 @@ Order (smallest risk first, most reuse for app 2, QR Scanner):
 
 1. ~~**SliceQR** and **SliceRating**~~: done in 0.2.0. The repo is public, so
    Duly's CI needs no token.
-2. **SliceUI Theme + Components**: tokens become a `SliceTheme` the app
-   provides; Duly passes its navy/green/brand colours.
+2. ~~**SliceUI Theme + Components**~~: done in 0.3.0 (`SliceTheme.duly` in
+   Duly from its asset colours).
 3. **SlicePurchases**: RevenueCat + Superwall + native fallback. Keys and the
    entitlement name come from the app.
 4. **SliceAnalytics**: consent + Firebase; each app keeps its own event enum

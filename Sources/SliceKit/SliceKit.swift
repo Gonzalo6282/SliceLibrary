@@ -3,5 +3,5 @@
 /// apps; see LIBRARY.md.
 public enum SliceKit {
     /// Matches the release tag.
-    public static let version = "0.2.0"
+    public static let version = "0.3.0"
 }
