@@ -1,0 +1,34 @@
+name: Tag release
+
+# Tags main with the version in Sources/SliceKit/SliceKit.swift (for example
+# v0.2.0) when that tag doesn't exist yet. A release is: raise the version and
+# CHANGELOG in a pull request, merge it, and this workflow adds the tag.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Tag the version if it's new
+        run: |
+          VERSION=$(sed -n 's/.*public static let version = "\(.*\)".*/\1/p' Sources/SliceKit/SliceKit.swift)
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::Couldn't read the version from SliceKit.swift"; exit 1
+          fi
+          if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null; then
+            echo "v$VERSION already tagged"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "v$VERSION" -m "SliceLibrary $VERSION"
+          git push origin "v$VERSION"
+          echo "::notice::Tagged v$VERSION"
