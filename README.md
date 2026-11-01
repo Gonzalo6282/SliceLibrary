@@ -49,5 +49,6 @@ The repo is public, so neither Xcode nor the app's CI needs a token.
 
 1. Update `CHANGELOG.md` and the `version` constants.
 2. Run the security check.
-3. Open a pull request (CI runs), merge, then tag: `git tag v0.2.0 && git push --tags`.
+3. Open a pull request (CI runs) and merge it. The "Tag release" workflow then
+   tags main with the new version (for example v0.2.0).
 4. In each app that should get it: raise the package version, run its tests.
