@@ -11,8 +11,8 @@ private func freshDefaults() throws -> UserDefaults {
     try #require(UserDefaults(suiteName: "slice-rating-\(UUID().uuidString)"))
 }
 
-/// Duly's schedule: first send; first marked paid 30+ days later; 10th send 90+ days later.
-private let dulySteps = [
+/// Three asks: first send; first marked paid 30+ days later; 10th send 90+ days later.
+private let threeSteps = [
     RatingStep(after: sent),
     RatingStep(after: paid, daysSinceLastAsk: 30),
     RatingStep(after: sent, count: 10, daysSinceLastAsk: 90),
@@ -21,7 +21,7 @@ private let dulySteps = [
 @Test func asksAtSpacedHappyMoments() throws {
     let defaults = try freshDefaults()
     func ask(_ m: RatingMoment, _ d: Double, _ v: String) -> Bool {
-        RatingPrompt(steps: dulySteps, keyPrefix: "reviewPrompt", defaults: defaults, version: v).record(m, now: day(d))
+        RatingPrompt(steps: threeSteps, keyPrefix: "reviewPrompt", defaults: defaults, version: v).record(m, now: day(d))
     }
     #expect(!ask(paid, 0, "1.0.1"))  // ask 1 is the first send
     #expect(ask(sent, 0, "1.0.1"))  // 1st sent
@@ -39,7 +39,7 @@ private let dulySteps = [
 
 @Test func savesUnderThePrefix() throws {
     let defaults = try freshDefaults()
-    let rating = RatingPrompt(steps: dulySteps, keyPrefix: "reviewPrompt", defaults: defaults, version: "2.0")
+    let rating = RatingPrompt(steps: threeSteps, keyPrefix: "reviewPrompt", defaults: defaults, version: "2.0")
     #expect(rating.record(sent, now: day0))
     #expect(defaults.integer(forKey: "reviewPromptCount") == 1)
     #expect(defaults.integer(forKey: "reviewPromptSentCount") == 1)
@@ -61,7 +61,7 @@ private let dulySteps = [
 
 @Test func continuesFromCountersSetByTheApp() throws {
     // An app moving from older rating code: one ask already made 10 days ago.
-    let rating = RatingPrompt(steps: dulySteps, defaults: try freshDefaults(), version: "1.1")
+    let rating = RatingPrompt(steps: threeSteps, defaults: try freshDefaults(), version: "1.1")
     rating.askCount = 1
     rating.lastAskDate = day0
     rating.setCount(1, of: sent)

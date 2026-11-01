@@ -2,5 +2,5 @@
 /// standard Settings, onboarding and paywall templates). See LIBRARY.md.
 public enum SliceUI {
     /// Matches the release tag.
-    public static let version = "0.1.0"
+    public static let version = "0.2.0"
 }

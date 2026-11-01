@@ -1,7 +1,7 @@
 name: CI
 
-# Private repo: macOS minutes count 10x against the free allowance, so CI runs
-# on pull requests, release tags and by hand, not on every push.
+# CI runs on pull requests, release tags and by hand (macOS runners are slow to
+# queue, so not on every push).
 on:
   pull_request:
   push:
