@@ -1,6 +1,6 @@
 # SliceLibrary
 
-Private Swift packages shared by every Slice of Life app:
+Swift packages shared by every Slice of Life app:
 
 - **SliceKit**: the engine (purchases and paywalls, analytics and consent,
   Sign in with Apple and account deletion, iCloud storage, PDF render/preview/
@@ -15,17 +15,20 @@ write new only if nothing fits.
 
 ## Add it to an app
 
-1. Xcode > Settings > Accounts: add the GitHub account that can read this repo.
-2. File > Add Package Dependencies… > `https://github.com/Gonzalo6282/SliceLibrary`
-3. Dependency rule: **Up to Next Minor Version** from the version you tested
-   (for example 0.3.0 ..< 0.4.0). Upgrading is a deliberate step.
-4. Add only the products the app uses (SliceKit, SliceUI, and later the single
-   modules, for example `SlicePurchases`).
-5. CI of the app: the app repo needs a read-only token for this repo, stored as
-   the secret `SLICE_LIBRARY_TOKEN`, and this step before building:
-   ```yaml
-   - run: git config --global url."https://x-access-token:${{ secrets.SLICE_LIBRARY_TOKEN }}@github.com/".insteadOf "https://github.com/"
-   ```
+1. File > Add Package Dependencies… > `https://github.com/Gonzalo6282/SliceLibrary`
+2. Dependency rule: **Up to Next Minor Version** from the version you tested
+   (for example 0.2.0 ..< 0.3.0). Upgrading is a deliberate step.
+3. Add only the products the app uses, for example `SliceQR` and `SliceRating`.
+
+The repo is public, so neither Xcode nor the app's CI needs a token.
+
+## Products
+
+| Product | Since | What it is |
+|---|---|---|
+| `SliceQR` | 0.2.0 | Crisp QR code images ([README](Sources/SliceQR/README.md)) |
+| `SliceRating` | 0.2.0 | App Store rating prompt at spaced happy moments ([README](Sources/SliceRating/README.md)) |
+| `SliceKit`, `SliceUI` | 0.1.0 | Umbrella names; modules arrive as their own products |
 
 ## Rules (Automation Master Plan, Phase 5)
 

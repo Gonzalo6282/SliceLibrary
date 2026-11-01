@@ -33,8 +33,8 @@ private func decode(_ image: CGImage) -> String? {
 }
 
 @Test func higherCorrectionMakesADenserCode() throws {
-    let low = try #require(SliceQR.cgImage(for: "https://slice-of-life.uk/duly", scale: 1, correction: .low))
-    let high = try #require(SliceQR.cgImage(for: "https://slice-of-life.uk/duly", scale: 1, correction: .high))
+    let low = try #require(SliceQR.cgImage(for: "https://slice-of-life.uk/apps", scale: 1, correction: .low))
+    let high = try #require(SliceQR.cgImage(for: "https://slice-of-life.uk/apps", scale: 1, correction: .high))
     #expect(high.width > low.width)
 }
 

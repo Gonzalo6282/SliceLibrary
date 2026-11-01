@@ -12,8 +12,8 @@ moved yet (still lives in the app named), `in library` = import it.
 | SliceAccount | Optional Sign in with Apple via Firebase, account deletion with Apple token revocation, clear error messages | planned | `Services/AccountService.swift` | Duly |
 | SliceStorage | SwiftData + CloudKit container with local fallback, "waiting for iCloud" on reinstall, backup status | planned | `Data/ModelContainerFactory.swift`, `Data/CloudImportWatcher.swift` | Duly |
 | SlicePDF | PDF page drawing helpers, preview, share item (off the main thread), watermark, "Made with …" line, page images | planned | `PDF/PDFRenderer.swift` (primitives only), `Features/Sending/SharePDF.swift`, `PDF/MadeWithDuly.swift` | Duly |
-| SliceQR | Crisp QR code images | planned | `PDF/PDFRenderer.swift` (`QRCode`) | Duly |
-| SliceRating | Rating prompt at spaced happy moments, once per version | planned | `Services/ReviewPrompt.swift` | Duly |
+| SliceQR | Crisp QR code images for any text, sharp in PDFs; `import SliceQR` | **in library** (0.2.0) | `PDF/PDFRenderer.swift` (`QRCode`) | Duly (on branch `library-migration`, merged after Duly 1.1.1 ships) |
+| SliceRating | Rating prompt at spaced happy moments from a schedule the app gives, once per version; `import SliceRating` | **in library** (0.2.0) | `Services/ReviewPrompt.swift` | Duly (on branch `library-migration`, merged after Duly 1.1.1 ships) |
 | SliceNotifications | Local notifications rebuilt from data, own prefix, permission only when the user turns something on | planned (v1.1) | `Services/Reminders.swift` | Duly v1.1 |
 | SliceFormats | Money, dates and paper size by locale | planned | `InvoiceKit/MoneyFormat.swift`, `Data/Business+Formatting.swift` (generic parts) | Duly |
 | SliceSharing | "Share the app" message and share-sheet events | planned | `Features/Settings/SettingsView.swift` (`ShareDuly`) | Duly |

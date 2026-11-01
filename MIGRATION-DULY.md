@@ -5,8 +5,8 @@ request; Duly must behave exactly the same after each step, with its CI green.
 
 Order (smallest risk first, most reuse for app 2, QR Scanner):
 
-1. **SliceQR** and **SliceRating**: tiny, no dependencies. Proves the set-up
-   (private package in Xcode and in Duly's CI with `SLICE_LIBRARY_TOKEN`).
+1. ~~**SliceQR** and **SliceRating**~~: done in 0.2.0. The repo is public, so
+   Duly's CI needs no token.
 2. **SliceUI Theme + Components**: tokens become a `SliceTheme` the app
    provides; Duly passes its navy/green/brand colours.
 3. **SlicePurchases**: RevenueCat + Superwall + native fallback. Keys and the
