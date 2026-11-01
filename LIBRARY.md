@@ -22,8 +22,8 @@ moved yet (still lives in the app named), `in library` = import it.
 
 | Module | What it does | Status | Comes from (Duly file) | Used by |
 |---|---|---|---|---|
-| Theme | Colour, type and spacing tokens, set by each app (light and dark) | planned | `DesignSystem/Typography.swift`, colour assets | Duly |
-| Components | Buttons, rows, grouped sections, chips, banners, field rows, status pills, empty states | planned | `DesignSystem/*.swift` | Duly |
+| Theme | `SliceTheme`: colours and fonts set by each app; follows light/dark or always dark/light; `.sliceTheme(_:)`, `SliceTheme.appDefault`, `Color(hex:)`, `Color(light:dark:)`; `import SliceUI` | **in library** (0.3.0) | `DesignSystem/Typography.swift`, colour assets | Duly (on branch `library-migration`, merged after Duly 1.1.1 ships) |
+| Components | Text styles, primary/ghost/small buttons, `GroupedSection`, `Row`, `FieldRow`, `IconChip`, `Avatar`, `Pill`, `ChoiceChip`, `Banner`, `DecimalField`/`IntField`, `ShareSheet`; `import SliceUI` | **in library** (0.3.0) | `DesignSystem/*.swift` (not HeroCard, StatusPill mapping, AddressField, PhotoAccess: Duly-specific) | Duly (on branch `library-migration`, merged after Duly 1.1.1 ships) |
 | StandardSettings | Settings screen: Rate, Share, Restore purchases, Subscription, Account (Sign in with Apple, Delete account), Help, Report a problem, Terms, Privacy, analytics switch | planned | `Features/Settings/SettingsView.swift`, `AccountRows.swift`, `LegalView.swift`, `SimpleSettingsPages.swift` (generic parts) | Duly |
 | Onboarding | Step-by-step onboarding shell with progress and a soft paywall at the end | planned | `Features/Onboarding/OnboardingView.swift` (shell only) | Duly |
 | PaywallTemplate | Native fallback paywall (plans, trial wording, legal links) | planned | `Features/Paywall/NativePaywallView.swift` | Duly |

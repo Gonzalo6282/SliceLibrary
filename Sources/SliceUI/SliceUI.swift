@@ -1,6 +1,7 @@
-/// SliceUI: the shared UI kit (design tokens themed per app, components,
-/// standard Settings, onboarding and paywall templates). See LIBRARY.md.
+/// SliceUI: the shared UI kit. Every component reads its colours and fonts
+/// from the app's `SliceTheme` (set with `.sliceTheme(_:)` or
+/// `SliceTheme.appDefault`). See README.md in this folder and LIBRARY.md.
 public enum SliceUI {
     /// Matches the release tag.
-    public static let version = "0.2.0"
+    public static let version = "0.3.0"
 }

@@ -15,8 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Package tests (macOS)
-        run: swift test
+        run: |
+          set -o pipefail
+          swift test 2>&1 | tee test.log || {
+            grep -E "error:|✘|failed" test.log | sort -u | head -20 | while IFS= read -r l; do echo "::error title=swift test::$l"; done
+            exit 1
+          }
       - name: Build for iOS Simulator
         run: |
+          set -o pipefail
           xcodebuild build -scheme SliceLibrary-Package \
-            -destination "generic/platform=iOS Simulator" CODE_SIGNING_ALLOWED=NO -quiet
+            -destination "generic/platform=iOS Simulator" CODE_SIGNING_ALLOWED=NO -quiet 2>&1 | tee ios.log || {
+            grep -E "error:" ios.log | sort -u | head -20 | while IFS= read -r l; do echo "::error title=iOS build::$l"; done
+            exit 1
+          }

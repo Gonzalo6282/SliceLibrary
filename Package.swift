@@ -15,7 +15,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "SliceKit"),
-        .target(name: "SliceUI"),
+        .target(name: "SliceUI", exclude: ["README.md"]),
         .target(name: "SliceQR", exclude: ["README.md"]),
         .target(name: "SliceRating", exclude: ["README.md"]),
         .testTarget(name: "SliceKitTests", dependencies: ["SliceKit"]),
