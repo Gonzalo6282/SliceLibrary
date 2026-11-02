@@ -29,6 +29,7 @@ The repo is public, so neither Xcode nor the app's CI needs a token.
 | `SliceQR` | 0.2.0 | Crisp QR code images ([README](Sources/SliceQR/README.md)) |
 | `SliceRating` | 0.2.0 | App Store rating prompt at spaced happy moments ([README](Sources/SliceRating/README.md)) |
 | `SliceUI` | 0.3.0 | Theme (`SliceTheme`) and components: buttons, rows, sections, chips, pills, banners, number fields, share sheet ([README](Sources/SliceUI/README.md)) |
+| `SlicePurchases` | 0.4.0 | RevenueCat + Superwall + native fallback paywall, `gate` that continues after buying ([README](Sources/SlicePurchases/README.md)) |
 | `SliceKit` | 0.1.0 | Umbrella name; engine modules arrive as their own products |
 
 ## Rules (Automation Master Plan, Phase 5)

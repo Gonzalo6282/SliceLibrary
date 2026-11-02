@@ -3,5 +3,5 @@
 /// `SliceTheme.appDefault`). See README.md in this folder and LIBRARY.md.
 public enum SliceUI {
     /// Matches the release tag.
-    public static let version = "0.3.0"
+    public static let version = "0.4.0"
 }

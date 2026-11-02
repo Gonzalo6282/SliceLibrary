@@ -7,7 +7,7 @@ moved yet (still lives in the app named), `in library` = import it.
 
 | Module | What it does | Status | Comes from (Duly file) | Used by |
 |---|---|---|---|---|
-| SlicePurchases | RevenueCat set-up, Premium state from RevenueCat or Apple's verified transactions, restore, Superwall paywalls with a native fallback, placements | planned | `Services/PurchaseManager.swift`, `Services/PaywallService.swift` | Duly |
+| SlicePurchases | RevenueCat set-up, Premium from RevenueCat or Apple's verified transactions, plans, buy, restore, Superwall paywalls buying through RevenueCat, native fallback request, `gate` that continues the tapped action after buying; keys, entitlement and placements from the app; `import SlicePurchases` | **in library** (0.4.0) | `Services/PurchaseManager.swift`, `Services/PaywallService.swift` | Duly (on branch `library-migration`, merged after Duly 1.1.1 ships) |
 | SliceAnalytics | Firebase Analytics + Crashlytics + Remote Config behind consent, consent question, event logging with app version and country | planned | `Services/AppAnalytics.swift` (events stay in each app) | Duly |
 | SliceAccount | Optional Sign in with Apple via Firebase, account deletion with Apple token revocation, clear error messages | planned | `Services/AccountService.swift` | Duly |
 | SliceStorage | SwiftData + CloudKit container with local fallback, "waiting for iCloud" on reinstall, backup status | planned | `Data/ModelContainerFactory.swift`, `Data/CloudImportWatcher.swift` | Duly |

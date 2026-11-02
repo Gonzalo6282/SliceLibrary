@@ -9,8 +9,8 @@ Order (smallest risk first, most reuse for app 2, QR Scanner):
    Duly's CI needs no token.
 2. ~~**SliceUI Theme + Components**~~: done in 0.3.0 (`SliceTheme.duly` in
    Duly from its asset colours).
-3. **SlicePurchases**: RevenueCat + Superwall + native fallback. Keys and the
-   entitlement name come from the app.
+3. ~~**SlicePurchases**~~: done in 0.4.0. The native paywall view stays in
+   Duly until PaywallTemplate (step 7).
 4. **SliceAnalytics**: consent + Firebase; each app keeps its own event enum
    (a protocol in the library).
 5. **SliceAccount** and **SliceUI StandardSettings**: together, since
