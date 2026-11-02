@@ -13,11 +13,11 @@ Order (smallest risk first, most reuse for app 2, QR Scanner):
    Duly until PaywallTemplate (step 7).
 4. ~~**SliceAnalytics**~~: done in 0.5.0 (Duly keeps `.askEveryone` and its
    event enum).
-5. ~~**SliceUI StandardSettings**~~: done in 0.6.0 (account rows are a slot;
-   **SliceAccount** still to move).
+5. ~~**SliceUI StandardSettings**~~: done in 0.6.0; ~~**SliceAccount**~~ done in
+   0.7.0 (its rows go in the account slot).
 6. **SliceStorage**: the container factory takes the app's schema and
    CloudKit container ID.
-7. **SlicePDF**, **SliceFormats**, **SliceSharing**; ~~**SliceUI Onboarding /
+7. **SlicePDF**, **SliceFormats**; ~~**SliceSharing**~~ (in StandardSettings, 0.6.0); ~~**SliceUI Onboarding /
    PaywallTemplate**~~ done in 0.6.0.
 8. **SliceNotifications** after Duly v1.1 has shipped.
 9. **ScreenshotFrames**: move the Python frame scripts into `Tools/screenshots`.

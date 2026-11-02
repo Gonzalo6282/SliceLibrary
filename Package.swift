@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "SliceRating", targets: ["SliceRating"]),
         .library(name: "SlicePurchases", targets: ["SlicePurchases"]),
         .library(name: "SliceAnalytics", targets: ["SliceAnalytics"]),
+        .library(name: "SliceAccount", targets: ["SliceAccount"]),
     ],
     dependencies: [
         // Same ranges as Duly, so apps resolve one version of each.
@@ -48,11 +49,22 @@ let package = Package(
             ],
             exclude: ["README.md"]
         ),
+        .target(
+            name: "SliceAccount",
+            dependencies: [
+                "SliceUI", "SlicePurchases",
+                // iOS only here; on macOS (package tests) the service reports "not available".
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk", condition: .when(platforms: [.iOS])),
+            ],
+            exclude: ["README.md"],
+            resources: [.process("Resources")]
+        ),
         .testTarget(name: "SliceKitTests", dependencies: ["SliceKit"]),
         .testTarget(name: "SliceUITests", dependencies: ["SliceUI"]),
         .testTarget(name: "SliceQRTests", dependencies: ["SliceQR"]),
         .testTarget(name: "SliceRatingTests", dependencies: ["SliceRating"]),
         .testTarget(name: "SlicePurchasesTests", dependencies: ["SlicePurchases", "SliceUI"]),
         .testTarget(name: "SliceAnalyticsTests", dependencies: ["SliceAnalytics"]),
+        .testTarget(name: "SliceAccountTests", dependencies: ["SliceAccount", "SliceUI"]),
     ]
 )

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0
+- **SliceAccount** (from Duly): optional Sign in with Apple via Firebase Auth,
+  Delete account with Apple token revocation, purchases linked to the account,
+  error messages (incl. the "reset Apple's link" help), `AccountRows` and
+  `DeleteAccountSheet` for StandardSettings' account slot. Translated (en, fr,
+  de, es, es-ES). Adds FirebaseAuth 12.19.x (iOS).
+
 ## 0.6.0
 - **SliceUI standard screens** (from Duly): `StandardSettings` (app sections,
   optional account rows, Restore, Subscription, Help, Report a problem, Rate,
