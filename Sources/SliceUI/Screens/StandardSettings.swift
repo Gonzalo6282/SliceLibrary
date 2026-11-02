@@ -251,7 +251,7 @@ public struct StandardSettings<Content: View>: View {
     private var legalSection: some View {
         GroupedSection(headerText: Text(ui("Privacy and legal")), footerText: legalFooter.map { Text($0) }) {
             if analytics != nil {
-                Toggle(isOn: Binding(get: { analyticsOn }, set: toggleAnalytics)) {
+                Toggle(isOn: Binding(get: { analyticsOn }, set: { on in toggleAnalytics(on) })) {
                     HStack(spacing: 12) {
                         IconChip(systemName: "chart.bar.fill", tint: .neutral)
                         VStack(alignment: .leading, spacing: 2) {
