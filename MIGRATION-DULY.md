@@ -11,8 +11,8 @@ Order (smallest risk first, most reuse for app 2, QR Scanner):
    Duly from its asset colours).
 3. ~~**SlicePurchases**~~: done in 0.4.0. The native paywall view stays in
    Duly until PaywallTemplate (step 7).
-4. **SliceAnalytics**: consent + Firebase; each app keeps its own event enum
-   (a protocol in the library).
+4. ~~**SliceAnalytics**~~: done in 0.5.0 (Duly keeps `.askEveryone` and its
+   event enum).
 5. **SliceAccount** and **SliceUI StandardSettings**: together, since
    Settings shows the account rows.
 6. **SliceStorage**: the container factory takes the app's schema and

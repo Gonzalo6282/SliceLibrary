@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+- **SliceAnalytics** (from Duly): `AppAnalytics` (Firebase Analytics,
+  Crashlytics, Remote Config; ad storage always denied), consent with
+  `.askEveryone` or `.askInEuropeOnly` (EEA, UK, Switzerland), `ConsentPrompt`,
+  `AnalyticsEventType` for each app's events, `RemoteValue` defaults. Adds
+  Firebase 12.19.x (iOS).
+
 ## 0.4.0
 - **SlicePurchases** (from Duly): `PurchaseManager` (RevenueCat or StoreKit 2,
   Premium from RevenueCat OR Apple's verified transactions, plans, buy,
