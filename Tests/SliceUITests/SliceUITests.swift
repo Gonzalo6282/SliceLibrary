@@ -5,7 +5,7 @@ import Testing
 @testable import SliceUI
 
 @Test func versionMatchesTheTag() {
-    #expect(SliceUI.version == "0.3.0")
+    #expect(SliceUI.version == "0.4.0")
 }
 
 // MARK: Colours

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0
+- **SlicePurchases** (from Duly): `PurchaseManager` (RevenueCat or StoreKit 2,
+  Premium from RevenueCat OR Apple's verified transactions, plans, buy,
+  restore, account link, diagnostics), `PaywallService` (Superwall buying
+  through RevenueCat, native fallback request, `gate` that continues the
+  tapped action after buying), `PurchaseConfig`, `AppKey`,
+  `PaywallPlacementType`. Adds RevenueCat 5.96+ and Superwall 4.18.x.
+
 ## 0.3.0
 - **SliceUI Theme**: `SliceTheme` (colours, fonts, light/dark/always-dark),
   `.sliceTheme(_:)`, `SliceTheme.appDefault`, `.system(accent:)` and

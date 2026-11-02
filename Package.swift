@@ -12,15 +12,31 @@ let package = Package(
         .library(name: "SliceUI", targets: ["SliceUI"]),
         .library(name: "SliceQR", targets: ["SliceQR"]),
         .library(name: "SliceRating", targets: ["SliceRating"]),
+        .library(name: "SlicePurchases", targets: ["SlicePurchases"]),
+    ],
+    dependencies: [
+        // Same ranges as Duly, so apps resolve one version of each.
+        .package(url: "https://github.com/RevenueCat/purchases-ios-spm.git", from: "5.96.0"),
+        .package(url: "https://github.com/superwall/Superwall-iOS", .upToNextMinor(from: "4.18.0")),
     ],
     targets: [
         .target(name: "SliceKit"),
         .target(name: "SliceUI", exclude: ["README.md"]),
         .target(name: "SliceQR", exclude: ["README.md"]),
         .target(name: "SliceRating", exclude: ["README.md"]),
+        .target(
+            name: "SlicePurchases",
+            dependencies: [
+                .product(name: "RevenueCat", package: "purchases-ios-spm"),
+                // Superwall is iOS-only; on macOS (package tests) the native paywall path is used.
+                .product(name: "SuperwallKit", package: "Superwall-iOS", condition: .when(platforms: [.iOS])),
+            ],
+            exclude: ["README.md"]
+        ),
         .testTarget(name: "SliceKitTests", dependencies: ["SliceKit"]),
         .testTarget(name: "SliceUITests", dependencies: ["SliceUI"]),
         .testTarget(name: "SliceQRTests", dependencies: ["SliceQR"]),
         .testTarget(name: "SliceRatingTests", dependencies: ["SliceRating"]),
+        .testTarget(name: "SlicePurchasesTests", dependencies: ["SlicePurchases"]),
     ]
 )
