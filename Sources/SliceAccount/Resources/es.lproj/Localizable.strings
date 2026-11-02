@@ -1,0 +1,14 @@
+/* SliceAccount strings (es). From Duly's catalog; keys are the English text. */
+
+"Apple couldn't confirm it's you. On your iPhone, open Settings > [your name] > Sign-In & Security > Sign in with Apple > %@ and tap Stop Using Apple ID. Then come back to %@ and try again." = "Apple no pudo confirmar que eres tú. En tu iPhone, abre Configuración > [tu nombre] > Inicio de sesión y seguridad > Iniciar sesión con Apple > %1$@ y toca Dejar de usar el ID de Apple. Luego vuelve a %2$@ e inténtalo de nuevo.";
+"Available once the app is fully set up" = "Disponible cuando la app termine de configurarse";
+"Cancel" = "Cancelar";
+"Confirm with Apple to finish:" = "Confirma con Apple para terminar:";
+"Delete account" = "Eliminar cuenta";
+"Delete your account?" = "¿Eliminar tu cuenta?";
+"Sign in to link your account across devices. Optional." = "Inicia sesión para vincular tu cuenta entre dispositivos. Opcional.";
+"Sign in with Apple" = "Iniciar sesión con Apple";
+"Sign in with Apple didn't finish. Please try again." = "No se completó el inicio de sesión con Apple. Inténtalo de nuevo.";
+"Signed in with Apple" = "Sesión iniciada con Apple";
+"Something went wrong" = "Algo salió mal";
+"This deletes your sign-in and unlinks your subscription from it. Everything you made stays on this device. To stop paying, cancel the subscription in Settings > [your name] > Subscriptions." = "Esto elimina tu inicio de sesión y desvincula tu suscripción. Todo lo que creaste se queda en este dispositivo. Para dejar de pagar, cancela la suscripción en Configuración > [tu nombre] > Suscripciones.";
