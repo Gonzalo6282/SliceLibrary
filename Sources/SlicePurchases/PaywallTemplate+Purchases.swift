@@ -38,7 +38,8 @@ extension PaywallTemplate {
     /// ```
     @MainActor
     public init(request: PaywallService.NativePaywallRequest, content: PaywallContent) {
-        self.init(content: content, onUnlock: request.onUnlock)
+        let unlock = request.onUnlock
+        self.init(content: content, onUnlock: { unlock() })
     }
 
     /// SliceUI's paywall wired to ``PurchaseManager``.
