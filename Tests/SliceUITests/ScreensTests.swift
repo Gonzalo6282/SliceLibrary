@@ -17,9 +17,17 @@ private let app = AppIdentity(
     #expect(app.versionLine == "Scanly 2.1 (7) · Slice of Life Ltd")
 }
 
-@Test func sliceUIShipsItsTranslations() {
-    let languages = Set(Bundle.module.localizations)
-    for code in ["en", "fr", "de", "es", "es-ES"] { #expect(languages.contains(code), "\(code) in \(languages)") }
+@Test func sliceUIShipsItsTranslations() throws {
+    func table(_ language: String) throws -> String {
+        let path = try #require(Bundle.module.path(forResource: "Localizable", ofType: "strings", inDirectory: nil, forLocalization: language), "\(language)")
+        return try String(contentsOfFile: path, encoding: .utf8)
+    }
+    #expect(try table("fr").contains("\"Noter %@\""))
+    #expect(try table("de").contains("\"%@ bewerten\""))
+    #expect(try table("es").contains("Configuración"))
+    #expect(try table("es-ES").contains("Ajustes"))  // Spain's wording, not Latin America's
+    #expect(try table("en-US").contains("unless canceled"))
+    #expect(try table("en").contains("unless cancelled"))
     #expect(ui("Rate \(app.name)") == "Rate Scanly")
 }
 
