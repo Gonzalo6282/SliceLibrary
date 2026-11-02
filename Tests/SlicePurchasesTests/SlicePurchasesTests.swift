@@ -1,4 +1,5 @@
 import Foundation
+import SliceUI
 import Testing
 
 @testable import SlicePurchases
@@ -143,4 +144,22 @@ private func reset(premium: Bool) {
         #expect(finished)
         reset(premium: false)
     }
+}
+
+// MARK: Paywall template wiring
+
+@Test func plansBecomePaywallPlans() {
+    typealias P = PurchaseManager.Plan
+    let y = P(id: "y", period: .year, price: "£29.99", monthlyPrice: "£2.50", trialDays: 3).paywallInfo
+    #expect(y.period == .year && y.price == "£29.99" && y.monthlyPrice == "£2.50" && y.trialDays == 3)
+    #expect(P(id: "w", period: .week, price: "£1").paywallInfo.period == .week)
+    #expect(P(id: "l", period: .lifetime, price: "£9").paywallInfo.period == .lifetime)
+    #expect(P(id: "q", period: .days(90), price: "£9").paywallInfo.period == .year)
+    #expect(P(id: "d", period: .days(3), price: "£9").paywallInfo.period == .week)
+}
+
+@Test func outcomesMapToThePaywall() {
+    #expect(PurchaseManager.PurchaseOutcome.purchased.paywallOutcome == .purchased)
+    #expect(PurchaseManager.PurchaseOutcome.failed("x").paywallOutcome == .failed)
+    #expect(PurchaseManager.PurchaseOutcome.pending.paywallOutcome == .pending)
 }

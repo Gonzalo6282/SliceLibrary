@@ -6,6 +6,7 @@ import PackageDescription
 // (see LIBRARY.md).
 let package = Package(
     name: "SliceLibrary",
+    defaultLocalization: "en",
     platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
         .library(name: "SliceKit", targets: ["SliceKit"]),
@@ -24,12 +25,13 @@ let package = Package(
     ],
     targets: [
         .target(name: "SliceKit"),
-        .target(name: "SliceUI", exclude: ["README.md"]),
+        .target(name: "SliceUI", exclude: ["README.md"], resources: [.process("Resources")]),
         .target(name: "SliceQR", exclude: ["README.md"]),
         .target(name: "SliceRating", exclude: ["README.md"]),
         .target(
             name: "SlicePurchases",
             dependencies: [
+                "SliceUI",
                 .product(name: "RevenueCat", package: "purchases-ios-spm"),
                 // Superwall is iOS-only; on macOS (package tests) the native paywall path is used.
                 .product(name: "SuperwallKit", package: "Superwall-iOS", condition: .when(platforms: [.iOS])),
@@ -50,7 +52,7 @@ let package = Package(
         .testTarget(name: "SliceUITests", dependencies: ["SliceUI"]),
         .testTarget(name: "SliceQRTests", dependencies: ["SliceQR"]),
         .testTarget(name: "SliceRatingTests", dependencies: ["SliceRating"]),
-        .testTarget(name: "SlicePurchasesTests", dependencies: ["SlicePurchases"]),
+        .testTarget(name: "SlicePurchasesTests", dependencies: ["SlicePurchases", "SliceUI"]),
         .testTarget(name: "SliceAnalyticsTests", dependencies: ["SliceAnalytics"]),
     ]
 )

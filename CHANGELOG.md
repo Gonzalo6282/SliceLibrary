@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0
+- **SliceUI standard screens** (from Duly): `StandardSettings` (app sections,
+  optional account rows, Restore, Subscription, Help, Report a problem, Rate,
+  Share, analytics switch, legal, version line), `HelpPage`,
+  `ReportProblemPage`, `SubscriptionPage`, `LegalView`/`LegalDocument`,
+  `AppIdentity`; `OnboardingShell` with dots, title, lead, field and choice
+  card; `PaywallTemplate` (context line per placement, benefits,
+  week/month/year/lifetime plans, trial timeline, delayed close button,
+  Restore/Terms/Privacy). SliceUI now ships translations (en, en-US, fr, de,
+  es, es-ES). `GroupedSection(headerText:footerText:)`.
+- **SlicePurchases**: `PaywallTemplate(request:content:)` wired to
+  `PurchaseManager`; `Plan.paywallInfo`. SlicePurchases now depends on SliceUI.
+
 ## 0.5.0
 - **SliceAnalytics** (from Duly): `AppAnalytics` (Firebase Analytics,
   Crashlytics, Remote Config; ad storage always denied), consent with
