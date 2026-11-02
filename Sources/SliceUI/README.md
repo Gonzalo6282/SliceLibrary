@@ -76,3 +76,106 @@ Helpers: `Color(hex:)`, `Color(light:dark:)` (colours or hex strings).
 
 Used by: Duly (theme from its asset colours; its invoice-specific views such
 as the status pill and the "Owed to you" card stay in the app).
+
+---
+
+# SliceUI: Standard screens (0.6.0)
+
+Settings, onboarding and paywall screens every app needs. Their own words
+(buttons, headers, paywall terms) are translated in SliceUI's catalog
+(Resources/*.lproj: English incl. US spelling, French, German, Spanish for Mexico and Spain);
+the app passes its own copy (FAQs, Premium text, headlines).
+
+## AppIdentity
+
+```swift
+let app = AppIdentity(name: "Scanly", company: "Slice of Life Ltd", appStoreID: "1234567890",
+                      supportEmail: "help@example.com",
+                      privacyURL: URL(string: "https://…/privacy/")!, termsURL: URL(string: "https://…/terms/")!)
+```
+
+## StandardSettings
+
+```swift
+NavigationStack {
+    StandardSettings(
+        app: app,
+        purchases: SettingsPurchases(                         // nil if the app sells nothing
+            isPremium: { PurchaseManager.shared.isPremium },
+            restore: { await PurchaseManager.shared.restore() },
+            upgrade: { PaywallService.shared.gate(Placement.settings) {} },
+            premiumText: "Unlimited scans are unlocked.",
+            plansText: "Free: 3 scans a day. Premium: unlimited scans and exports.",
+            diagnostics: { await PurchaseManager.shared.diagnostics() }),
+        analytics: SettingsAnalytics(                          // nil = no switch
+            isOn: { AppAnalytics.shared.isEnabled },
+            setOn: { AppAnalytics.shared.setConsent($0) },
+            askFirst: .init(title: "Help improve Scanly?", message: "…", allow: "Allow", deny: "Don't Allow")),
+        help: SettingsHelp(faqs: [.init("Is it free?", "…")], reportTopics: ["Scanning", "Billing"],
+                           reportFooter: "We reply within 24 hours."),
+        share: SettingsShare(message: "Try Scanly: https://apps.apple.com/app/id1234567890"),
+        legalFooter: nil,
+        header: nil,            // AnyView, e.g. a plan card
+        account: nil,           // AnyView rows above Restore, e.g. Sign in with Apple; nil = no account
+        debug: nil
+    ) {
+        GroupedSection(header: "Scanner") { … }               // the app's own sections first
+    }
+}
+```
+
+Order: header, your sections, Account (account rows, Restore purchases,
+Subscription), Help (Help and support, Report a problem, Rate, Share),
+Privacy and legal (analytics switch, Privacy Policy, Terms of Use), debug, version line.
+Pages it pushes: `HelpPage`, `ReportProblemPage` (Mail with topic, message,
+app version and device), `SubscriptionPage` (manage, restore, Apple billing
+text), `LegalView`.
+
+Legal text: bundle `terms.txt` and `privacy.txt` in the app (translations
+`terms.fr.txt`…); `LegalDocument.terms.blocks`, `LegalBlock.parse`.
+
+## Onboarding shell
+
+```swift
+OnboardingShell(step: 2, of: 4, showsProgress: true) {
+    OnboardingTitle("What do you scan?")
+    OnboardingLead("We'll set things up for you.")
+    OnboardingChoice(icon: "qrcode", title: Text("QR codes"), detail: Text("Links, Wi-Fi, contacts"),
+                     isSelected: choice == .qr) { choice = .qr }
+    OnboardingField("Name") { TextField("Your name", text: $name) }
+} footer: {
+    Button("Continue") { next() }.buttonStyle(.primary)
+}
+```
+
+End with the soft paywall from SlicePurchases: `PaywallService.shared.gate(Placement.onboardingEnd, onFinished: { … }) {}`.
+
+## PaywallTemplate
+
+```swift
+PaywallContent(
+    headline: "Unlock unlimited scans",                     // per placement
+    subtitle: "**Free:** 3 scans a day.",                    // context line (Markdown)
+    benefits: ["Unlimited scans", "No ads", "Export to PDF"],
+    headerBackground: .black, headerForeground: .white,      // nil = theme canvas + ink
+    showsTrialTimeline: true, trialReminder: false,          // reminder only if one is really sent
+    closeButtonDelay: .seconds(4),                           // hard paywall; swipe-down blocked until then
+    termsURL: app.termsURL, privacyURL: app.privacyURL)
+```
+
+With SlicePurchases (wired to `PurchaseManager`):
+
+```swift
+.sheet(item: $paywalls.nativePaywall) { request in
+    PaywallTemplate(request: request, content: content(for: request.placement))
+        .onDisappear { request.onClose() }
+}
+```
+
+Without it: `PaywallTemplate(content:plans:loadPlans:buy:restore:onUnlock:)`
+with `PaywallPlanInfo` (`.week`, `.month`, `.year`, `.lifetime`, price,
+monthly price, trial days) and `PaywallOutcome`.
+
+Every paywall shows: the plans (yearly selected first), the price and
+renewal terms with the trial end date, one buy button ("Start 3-day free
+trial" / "Continue"), Restore, Terms and Privacy.

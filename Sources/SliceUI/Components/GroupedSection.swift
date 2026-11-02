@@ -3,22 +3,29 @@ import SwiftUI
 /// A card of rows on the canvas: 14pt radius, 1pt hairline, no shadow, with an
 /// optional header and footer. Put a ``RowDivider`` between rows.
 public struct GroupedSection<Content: View>: View {
-    var header: LocalizedStringKey?
-    var footer: LocalizedStringKey?
+    var header: Text?
+    var footer: Text?
     let content: Content
 
     @Environment(\.sliceTheme) private var theme
 
     public init(header: LocalizedStringKey? = nil, footer: LocalizedStringKey? = nil, @ViewBuilder content: () -> Content) {
-        self.header = header
-        self.footer = footer
+        self.header = header.map { Text($0) }
+        self.footer = footer.map { Text($0) }
+        self.content = content()
+    }
+
+    /// With ready-made texts (e.g. `Text(verbatim:)` or another bundle's strings).
+    public init(headerText: Text?, footerText: Text? = nil, @ViewBuilder content: () -> Content) {
+        self.header = headerText
+        self.footer = footerText
         self.content = content()
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if let header {
-                Text(header)
+                header
                     .font(theme.font(.footnote, weight: .medium))
                     .foregroundStyle(theme.inkSecondary)
                     .padding(.horizontal, 16)
@@ -31,7 +38,7 @@ public struct GroupedSection<Content: View>: View {
                 .clipShape(RoundedRectangle(cornerRadius: 14))
                 .padding(.horizontal, 16)
             if let footer {
-                Text(footer)
+                footer
                     .font(theme.font(.caption))
                     .foregroundStyle(theme.inkSecondary)
                     .padding(.horizontal, 16)
