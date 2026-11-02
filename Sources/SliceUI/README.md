@@ -83,7 +83,7 @@ as the status pill and the "Owed to you" card stay in the app).
 
 Settings, onboarding and paywall screens every app needs. Their own words
 (buttons, headers, paywall terms) are translated in SliceUI's catalog
-(English incl. US spelling, French, German, Spanish for Mexico and Spain);
+(Resources/*.lproj: English incl. US spelling, French, German, Spanish for Mexico and Spain);
 the app passes its own copy (FAQs, Premium text, headlines).
 
 ## AppIdentity
