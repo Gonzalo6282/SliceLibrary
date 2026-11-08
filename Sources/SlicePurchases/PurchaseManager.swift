@@ -175,6 +175,16 @@ public final class PurchaseManager {
         return isPremium
     }
 
+    // MARK: Analytics link
+
+    /// Sends the Firebase app instance ID to RevenueCat, for its Firebase /
+    /// Google Analytics integration. Pass nil to clear it (for example when the
+    /// user turns analytics off). Does nothing without RevenueCat.
+    public func setFirebaseAppInstanceID(_ id: String?) {
+        guard usesRevenueCat else { return }
+        Purchases.shared.attribution.setFirebaseAppInstanceID(id)
+    }
+
     // MARK: Account link
 
     /// Links purchases to the app's account ID (for example after Sign in with Apple).

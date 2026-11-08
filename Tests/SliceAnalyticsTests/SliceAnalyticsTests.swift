@@ -75,6 +75,7 @@ func restOfTheWorldDoesnt(code: String) {
     #expect(analytics.remoteNumber("trial_days") == 3)
     #expect(analytics.remoteString("headline") == "Hi")
     #expect(!analytics.remoteBool("missing"))
+    #expect(analytics.appInstanceID == nil)  // no Firebase: nothing to link
 }
 
 @Test func remoteDefaultsBecomeFirebaseValues() {

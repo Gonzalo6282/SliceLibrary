@@ -72,13 +72,22 @@ RootView()
 Inside the paywall, use `PurchaseManager.shared.plans`, `purchase(_:)` and
 `restore()`; call `onUnlock()` after `.purchased` or a successful restore.
 
+## Firebase / Google Analytics link
+
+For RevenueCat's Firebase integration, after both are configured (and again when
+the user changes the analytics switch):
+
+```swift
+PurchaseManager.shared.setFirebaseAppInstanceID(AppAnalytics.shared.appInstanceID)
+```
+
 ## API
 
 | Call | What it does |
 |---|---|
 | `PurchaseConfig(revenueCatAPIKey:entitlement:productIDs:forcePremium:adServicesAttribution:logPrefix:)` | Launch settings |
 | `AppKey.infoPlist(_:prefix:)` | Reads a key from Info.plist; nil if empty or unexpanded |
-| `PurchaseManager.shared` | `isPremium`, `usesRevenueCat`, `plans`, `configure(_:)`, `loadPlans()`, `purchase(_:) -> PurchaseOutcome`, `restore() -> Bool`, `refreshStoreKitEntitlement()`, `logIn(userID:)`, `logOut()`, `diagnostics()` |
+| `PurchaseManager.shared` | `isPremium`, `usesRevenueCat`, `plans`, `configure(_:)`, `loadPlans()`, `purchase(_:) -> PurchaseOutcome`, `restore() -> Bool`, `refreshStoreKitEntitlement()`, `logIn(userID:)`, `logOut()`, `setFirebaseAppInstanceID(_:)`, `diagnostics()` |
 | `PurchaseManager.Plan` | `id`, `period` (`.week`, `.month`, `.year`, `.lifetime`, `.days(n)`), `price`, `monthlyPrice` (yearly), `trialDays`, `isYearly` |
 | `PurchaseManager.PurchaseOutcome` | `.purchased`, `.cancelled`, `.pending`, `.failed(message)` |
 | `PaywallService.shared` | `configure(superwallAPIKey:)`, `gate(_:params:onFinished:feature:)`, `nativePaywall`, `onPaywallShown`, `identify(userID:)`, `resetIdentity()`, `usesSuperwall`, `statusDescription` |

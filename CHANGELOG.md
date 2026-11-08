@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1
+- **SliceAnalytics**: `AppAnalytics.shared.appInstanceID` (the Firebase app
+  instance ID; nil without Firebase or without consent).
+- **SlicePurchases**: `PurchaseManager.shared.setFirebaseAppInstanceID(_:)`
+  sends it to RevenueCat for its Firebase / Google Analytics integration.
+
 ## 0.7.0
 - **SliceAccount** (from Duly): optional Sign in with Apple via Firebase Auth,
   Delete account with Apple token revocation, purchases linked to the account,

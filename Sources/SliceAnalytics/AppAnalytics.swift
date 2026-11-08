@@ -137,6 +137,21 @@ public final class AppAnalytics {
         #endif
     }
 
+    // MARK: Linking
+
+    /// The Firebase app instance ID, so a purchase SDK can tie its events to this
+    /// install (for example RevenueCat's Firebase / Google Analytics integration).
+    /// nil without Firebase or without consent, so nothing is linked unless the
+    /// user agreed to analytics.
+    public var appInstanceID: String? {
+        #if canImport(FirebaseCore)
+        guard isConfigured, isEnabled else { return nil }
+        return Analytics.appInstanceID()
+        #else
+        return nil
+        #endif
+    }
+
     // MARK: Events
 
     /// Logs an event with `app_version` (and `country`) attached. Nothing is sent

@@ -74,7 +74,7 @@ extension AppAnalytics {
 | `AnalyticsConfig(consentKey:consentPolicy:remoteDefaults:appVersion:addsCountry:)` | Launch settings |
 | `ConsentPolicy` | `.askEveryone`, `.askInEuropeOnly` |
 | `ConsentRegion.requiresConsent(countryCode:)` | EEA + UK + Switzerland check (alpha-2 or alpha-3) |
-| `AppAnalytics.shared` | `configure(_:)`, `isConfigured`, `storedConsent`, `isEnabled`, `needsConsentPrompt`, `requiresConsent`, `setConsent(_:)`, `log(_:_:)`, `record(_:)`, `remoteBool/remoteString/remoteNumber(_:)`, `country` |
+| `AppAnalytics.shared` | `configure(_:)`, `isConfigured`, `storedConsent`, `isEnabled`, `needsConsentPrompt`, `requiresConsent`, `setConsent(_:)`, `log(_:_:)`, `record(_:)`, `remoteBool/remoteString/remoteNumber(_:)`, `country`, `appInstanceID` (nil without Firebase or consent) |
 | `AppAnalytics.hasFirebaseFile` | `GoogleService-Info.plist` is in the bundle |
 | `AnalyticsEventType` | Protocol for the app's event enum (`String` raw values work automatically) |
 | `RemoteValue` | `.bool`, `.int`, `.double`, `.string` defaults |

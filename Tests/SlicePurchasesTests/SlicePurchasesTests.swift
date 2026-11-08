@@ -163,3 +163,10 @@ private func reset(premium: Bool) {
     #expect(PurchaseManager.PurchaseOutcome.failed("x").paywallOutcome == .failed)
     #expect(PurchaseManager.PurchaseOutcome.pending.paywallOutcome == .pending)
 }
+
+@Test @MainActor func firebaseLinkIsIgnoredWithoutRevenueCat() {
+    let manager = PurchaseManager()
+    #expect(!manager.usesRevenueCat)
+    manager.setFirebaseAppInstanceID("abc")  // no RevenueCat: does nothing, doesn't crash
+    manager.setFirebaseAppInstanceID(nil)
+}
